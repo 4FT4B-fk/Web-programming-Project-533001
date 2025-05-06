@@ -7,7 +7,6 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Replace with a secure key in production
 
-# --- Upload configuration ---
 UPLOAD_FOLDER = 'static/videos'
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -15,7 +14,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# --- Database connection ---
 def get_db_connection():
     return mysql.connector.connect(
         host="127.0.0.1",

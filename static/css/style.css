@@ -1,0 +1,79 @@
+/* Vanta background wrapper */
+#vanta-bg {
+    min-height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+/* General styling */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: rgba(32, 32, 32, 0.8); /* semi-transparent header */
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+/* Main content */
+.main-content {
+    padding: 20px;
+}
+
+/* Login/Welcome box */
+.welcome-box {
+    max-width: 400px;
+    margin: 60px auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #cc0000;
+}
+
+.register-link {
+    font-weight: bold;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}

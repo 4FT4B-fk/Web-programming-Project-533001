@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Now Playing - YouStream{% endblock %}
+{% block content %}
+<div class="welcome-box">
+  <h2>Now Playing</h2>
+  <video width="100%" height="auto" controls autoplay>
+    <source src="{{ url_for('static', filename='videos/' + filename) }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- ✅ Back to Upload Page -->
+  <p style="margin-top: 20px;"><a href="{{ url_for('upload_video') }}">← Back to Upload</a></p>
+</div>
+{% endblock %}

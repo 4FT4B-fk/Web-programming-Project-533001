@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard - YouStream{% endblock %}
+{% block content %}
+<div class="welcome-box" style="max-width: 1000px;">
+  <h2>Admin Dashboard</h2>
+
+  <!-- Registered Users Table -->
+  <h3>👤 Registered Users</h3>
+  <table border="1" cellpadding="8" cellspacing="0" style="width:100%; margin-bottom: 30px;">
+    <tr style="background-color: #eee;">
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        {% if user.id != session.get('user_id') %}
+        <form action="/admin/delete_user/{{ user.id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+          <button type="submit">Delete</button>
+        </form>
+        {% else %}
+        (You)
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Uploaded Videos Table -->
+  <h3>🎬 Uploaded Videos</h3>
+  <table border="1" cellpadding="8" cellspacing="0" style="width:100%;">
+    <tr style="background-color: #eee;">
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th>Action</th>
+    </tr>
+    {% for video in videos %}
+    <tr>
+      <td>{{ video.id }}</td>
+      <td>{{ video.title }}</td>
+      <td>{{ video.description }}</td>
+      <td>{{ video.filename }}</td>
+      <td>
+        <form action="/admin/delete_video/{{ video.id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this video?');">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p style="margin-top: 20px;"><a href="{{ url_for('logout') }}">← Logout</a></p>
+</div>
+{% endblock %}

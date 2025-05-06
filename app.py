@@ -5,7 +5,7 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  # Replace with a secure key in production
+app.secret_key = "your_secret_key"
 
 UPLOAD_FOLDER = 'static/videos'
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}

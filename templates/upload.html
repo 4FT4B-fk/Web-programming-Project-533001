@@ -1,41 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Upload Video - YouStream</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-  <div id="vanta-bg">
-    <header class="header">
-      <div class="logo">🎬 Video Portal</div>
-    </header>
+{% extends 'base.html' %}
+{% block title %}Upload Video - Video Portal{% endblock %}
 
-    <main class="main-content">
-      <div class="welcome-box">
-        <h2>Upload Your Video</h2>
-        <form method="POST" enctype="multipart/form-data" class="login-form">
-          <input type="text" name="title" placeholder="Title" required><br>
-          <textarea name="description" placeholder="Description" required></textarea><br>
-          <input type="file" name="video" accept="video/*" required><br>
-          <input type="submit" value="Upload">
-        </form>
-        <p><a href="{{ url_for('logout') }}">← Logout</a></p>
-      </div>
-    </main>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
-  <script>
-    VANTA.FOG({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00
-    });
-  </script>
-</body>
-</html>
+{% block content %}
+<div class="welcome-box">
+  <h2>Upload Your Video</h2>
+  <form method="POST" enctype="multipart/form-data" class="login-form">
+    <input type="text" name="title" placeholder="Title" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="file" name="video" accept="video/*" required><br>
+    <input type="submit" value="Upload">
+  </form>
+</div>
+{% endblock %}

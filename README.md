@@ -53,7 +53,7 @@ cd Web-programming-Project-533001
 
 ```Create a new MySQL database using the commands given in the "create db.sql".
 
-**### 3. Database Connection Function**
+**### Database Connection Function**
 
 Make sure your app.py includes this function:
 

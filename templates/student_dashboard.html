@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - University Class Timetable Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-section">
+        <h3>Welcome, {{ session.full_name }}!</h3>
+        <p>Here's your personalized class timetable and updates.</p>
+    </div>
+
+    <!-- Monthly Calendar -->
+    <div class="dashboard-section">
+        <h3>Monthly Class Schedule</h3>
+        <div class="calendar-header">
+            <h4>{{ calendar_data.month_year }}</h4>
+        </div>
+        <div class="monthly-calendar">
+            <div class="calendar-weekdays">
+                <div class="weekday">Sun</div>
+                <div class="weekday">Mon</div>
+                <div class="weekday">Tue</div>
+                <div class="weekday">Wed</div>
+                <div class="weekday">Thu</div>
+                <div class="weekday">Fri</div>
+                <div class="weekday">Sat</div>
+            </div>
+            <div class="calendar-days">
+                {% for week in calendar_data.weeks %}
+                    {% for day_data in week %}
+                        <div class="calendar-day {% for css_class in day_data.css_classes %}{{ css_class }} {% endfor %}{% if day_data.day and day_data.is_today %}today{% endif %}">
+                            {% if day_data.day %}
+                                <div class="day-number">{{ day_data.day }}</div>
+                                {% for class in day_data.classes %}
+                                    <div class="class-event">
+                                        {{ class.course_code }}<br>
+                                        {{ class.start_time }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="dashboard-section">
+        <h3>Recent Notifications</h3>
+        {% if notifications %}
+            {% for notification in notifications %}
+            <div class="notification-item">
+                <h4>{{ notification.title }}</h4>
+                <p>{{ notification.message }}</p>
+                <div class="notification-meta">
+                    <strong>Course:</strong> {{ notification.course_name }} | 
+                    <strong>From:</strong> {{ notification.professor_name }} | 
+                    <strong>Date:</strong> {{ notification.created_at.strftime('%Y-%m-%d %H:%M') }}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No notifications at this time.</p>
+        {% endif %}
+    </div>
+
+    <!-- Professor Contacts -->
+    <div class="dashboard-section">
+        <h3>Professor Contact Details</h3>
+        {% if professor_contacts %}
+            {% for contact in professor_contacts %}
+            <div class="contact-card">
+                <h4>{{ contact.full_name }}</h4>
+                <p><strong>Course:</strong> {{ contact.course_name }}</p>
+                <p><strong>Email:</strong> {{ contact.email }}</p>
+                {% if contact.office_location %}
+                <p><strong>Office:</strong> {{ contact.office_location }}</p>
+                {% endif %}
+                {% if contact.office_hours %}
+                <p><strong>Office Hours:</strong> {{ contact.office_hours }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No professor contacts available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Course Management -->
+    <div class="dashboard-section">
+        <h3>Course Management</h3>
+        
+        <h4>Enrolled Courses</h4>
+        <div class="course-list">
+            {% for course in enrolled_courses %}
+            {% if loop.index0 == 0 or enrolled_courses[loop.index0-1].id != course.id %}
+            <div class="course-item">
+                <div class="course-info">
+                    <h4>{{ course.course_code }} - {{ course.course_name }}</h4>
+                    <p>Professor: {{ course.professor_name or 'TBA' }}</p>
+                    <p>Credits: {{ course.credits }}</p>
+                </div>
+                <form method="POST" action="{{ url_for('drop_course') }}" style="display: inline;">
+                    <input type="hidden" name="course_id" value="{{ course.id }}">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to drop this course?')">Drop Course</button>
+                </form>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <h4 style="margin-top: 2rem;">Available Courses</h4>
+        <div class="course-list">
+            {% for course in available_courses %}
+            <div class="course-item">
+                <div class="course-info">
+                    <h4>{{ course.course_code }} - {{ course.course_name }}</h4>
+                    <p>Professor: {{ course.professor_name or 'TBA' }}</p>
+                    <p>Credits: {{ course.credits }}</p>
+                    {% if course.description %}
+                    <p>{{ course.description }}</p>
+                    {% endif %}
+                </div>
+                <form method="POST" action="{{ url_for('enroll_course') }}" style="display: inline;">
+                    <input type="hidden" name="course_id" value="{{ course.id }}">
+                    <button type="submit" class="btn btn-primary">Enroll</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

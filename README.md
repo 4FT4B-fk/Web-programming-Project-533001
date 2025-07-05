@@ -33,11 +33,6 @@ This is a university-level web application project titled **"University Class Ti
 │ │ └── register.html
 │ │ └── student_dashboard.html
 │ │ └── professor_dashboard.html
-...
-
-markdown
-Copy
-Edit
 
 ## ⚙️ Technologies Used
 

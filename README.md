@@ -37,7 +37,6 @@ This is a web application project **"University Class Timetable Portal"**. It pr
 - Python (Flask)
 - MySQL
 - HTML, CSS
-- XAMPP
 
 ## 📦 Setup Instructions
 

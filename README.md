@@ -1,6 +1,6 @@
 # Web Programming Project - University Class Timetable
 
-This is a university-level web application project titled **"University Class Timetable Portal"**. It provides functionality for students and professors to manage and view class schedules, notifications, and contact information.
+This is a web application project **"University Class Timetable Portal"**. It provides functionality for students and professors to manage and view class schedules, notifications, and contact information.
 
 ## 🚀 Features
 
@@ -12,8 +12,6 @@ This is a university-level web application project titled **"University Class Ti
   - 👩‍🏫 Professor contact section
 - MySQL database for storing users, courses, schedules
 - Responsive frontend styled with HTML/CSS
-- PDF export support
-- No favicons used (as per specification)
 
 ## 🗂 Project Structure
 
@@ -39,7 +37,7 @@ This is a university-level web application project titled **"University Class Ti
 - Python (Flask)
 - MySQL
 - HTML, CSS
-- XAMPP (for local dev)
+- XAMPP
 
 ## 📦 Setup Instructions
 

@@ -17,7 +17,7 @@ This is a university-level web application project titled **"University Class Ti
 
 ## 🗂 Project Structure
 
-├── Timetable/
+├── Web-programming-Project-533001/
 │ ├── app.py
 │ ├── scripts/
 │ │ └── sample_data.sql
